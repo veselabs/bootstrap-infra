@@ -35,8 +35,8 @@
           modules = [
             {
               env = {
-                AWS_ACCESS_KEY_ID = "op://veselabs/AWS Root Access Key/username";
-                AWS_SECRET_ACCESS_KEY = "op://veselabs/AWS Root Access Key/credential";
+                AWS_ACCESS_KEY_ID = "op://veselabs/aws root access key/username";
+                AWS_SECRET_ACCESS_KEY = "op://veselabs/aws root access key/credential";
               };
 
               languages = {

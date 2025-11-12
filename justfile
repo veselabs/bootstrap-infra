@@ -1,8 +1,8 @@
-# Lists all recipes
+# List all recipes
 default:
     @just --list
 
-# Checks if the Terraform docs need to be regenerated
+# Check the Terraform docs
 [group('docs')]
 check-docs:
     #!/usr/bin/env bash
@@ -13,7 +13,7 @@ check-docs:
         --output-file=README.md \
         --output-check
 
-# Generates Terraform docs
+# Generate the Terraform docs
 [group('docs')]
 generate-docs:
     #!/usr/bin/env bash
@@ -23,7 +23,7 @@ generate-docs:
         --recursive="${recursive}" \
         --output-file=README.md
 
-# Locks the Terraform providers
+# Lock the Terraform providers
 lock-providers:
     #!/usr/bin/env bash
     set -euxo pipefail
