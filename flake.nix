@@ -1,5 +1,5 @@
 {
-  description = "infrastructure-bootstrap";
+  description = "bootstrap-infra";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";

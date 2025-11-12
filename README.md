@@ -1,4 +1,4 @@
-# infrastructure-bootstrap
+# bootstrap-infra
 
 <!-- prettier-ignore-start -->
 <!-- BEGIN_TF_DOCS -->
