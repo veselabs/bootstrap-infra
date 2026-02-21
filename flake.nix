@@ -37,6 +37,8 @@
               env = {
                 AWS_ACCESS_KEY_ID = "op://veselabs/aws root access key/username";
                 AWS_SECRET_ACCESS_KEY = "op://veselabs/aws root access key/credential";
+                CLOUDFLARE_API_TOKEN = "op://veselabs/cloudflare api token/credential";
+                TF_VAR_cloudflare_account_id = "op://veselabs/cloudflare api token/account_id";
               };
 
               languages = {
