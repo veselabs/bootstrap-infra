@@ -37,6 +37,11 @@
               env = {
                 AWS_ACCESS_KEY_ID = "op://veselabs/aws root access key/username";
                 AWS_SECRET_ACCESS_KEY = "op://veselabs/aws root access key/credential";
+                CLOUDFLARE_ACCESS_KEY_ID = "op://veselabs/cloudflare api token/access_key_id";
+                CLOUDFLARE_ACCOUNT_ID = "op://veselabs/cloudflare api token/account_id";
+                CLOUDFLARE_API_TOKEN = "op://veselabs/cloudflare api token/credential";
+                CLOUDFLARE_SECRET_ACCESS_KEY = "op://veselabs/cloudflare api token/secret_access_key";
+                TF_VAR_cloudflare_account_id = "op://veselabs/cloudflare api token/account_id";
               };
 
               languages = {
@@ -50,6 +55,7 @@
                   inherit
                     (pkgs)
                     awscli2
+                    envsubst
                     just
                     terraform-docs
                     ;

@@ -2,6 +2,10 @@
 default:
     @just --list
 
+# Init the Terraform backend
+terraform-init *ARGS:
+    terraform init -backend-config=<(envsubst -i backend.config) {{ ARGS }}
+
 # Check the Terraform docs
 [group('docs')]
 check-docs:
@@ -25,8 +29,6 @@ generate-docs:
 
 # Lock the Terraform providers
 lock-providers:
-    #!/usr/bin/env bash
-    set -euxo pipefail
     terraform providers lock \
         -platform=darwin_amd64 \
         -platform=darwin_arm64 \
