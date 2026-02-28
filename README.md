@@ -1,5 +1,8 @@
 # bootstrap-infra
 
+This project provides a Terraform configuration for provisioning a Cloudflare
+R2 bucket as a centralized Terraform state backend.
+
 <!-- prettier-ignore-start -->
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
