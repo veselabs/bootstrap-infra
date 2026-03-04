@@ -57,6 +57,7 @@
                     awscli2
                     envsubst
                     just
+                    pre-commit
                     terraform-docs
                     ;
                 };
