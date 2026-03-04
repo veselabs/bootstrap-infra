@@ -54,6 +54,7 @@
                 ++ builtins.attrValues {
                   inherit
                     (pkgs)
+                    _1password-cli
                     awscli2
                     envsubst
                     just
