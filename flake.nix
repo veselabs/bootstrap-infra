@@ -4,31 +4,20 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-parts.url = "github:hercules-ci/flake-parts/main";
-    treefmt-nix.url = "github:numtide/treefmt-nix/main";
     devenv.url = "github:cachix/devenv/v2.0";
+    treefmt-nix.url = "github:numtide/treefmt-nix/main";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} ({self, ...}: {
+    flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
 
       perSystem = {
         pkgs,
-        self',
         system,
         ...
-      }: let
-        treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs {
-          projectRootFile = "flake.nix";
-
-          programs = {
-            alejandra.enable = true;
-            prettier.enable = true;
-            terraform.enable = true;
-            terraform.package = pkgs.terraform;
-          };
-        };
-      in {
+      }: {
         devShells.default = inputs.devenv.lib.mkShell {
           inherit inputs pkgs;
 
@@ -49,19 +38,29 @@
                 terraform.enable = true;
               };
 
-              packages =
-                [self'.formatter]
-                ++ builtins.attrValues {
-                  inherit
-                    (pkgs)
-                    _1password-cli
-                    awscli2
-                    envsubst
-                    just
-                    pre-commit
-                    terraform-docs
-                    ;
+              packages = builtins.attrValues {
+                inherit
+                  (pkgs)
+                  _1password-cli
+                  awscli2
+                  envsubst
+                  just
+                  pre-commit
+                  terraform-docs
+                  ;
+              };
+
+              treefmt = {
+                enable = true;
+                config = {
+                  programs = {
+                    alejandra.enable = true;
+                    prettier.enable = true;
+                    terraform.enable = true;
+                    terraform.package = pkgs.terraform;
+                  };
                 };
+              };
 
               git-hooks.hooks = {
                 deadnix.enable = true;
@@ -75,7 +74,6 @@
                 };
                 tflint.enable = true;
                 treefmt.enable = true;
-                treefmt.package = self'.formatter;
                 trim-trailing-whitespace.enable = true;
                 yamllint.enable = true;
               };
@@ -83,18 +81,10 @@
           ];
         };
 
-        packages = {
-          devenv-test = self'.devShells.default.config.test;
-          devenv-up = self'.devShells.default.config.procfileScript;
-        };
-
-        formatter = treefmtEval.config.build.wrapper;
-        checks.formatting = treefmtEval.config.build.check self;
-
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           config.allowUnfree = true;
         };
       };
-    });
+    };
 }
