@@ -24,8 +24,6 @@
           modules = [
             {
               env = {
-                AWS_ACCESS_KEY_ID = "op://veselabs/aws root access key/username";
-                AWS_SECRET_ACCESS_KEY = "op://veselabs/aws root access key/credential";
                 CLOUDFLARE_ACCESS_KEY_ID = "op://veselabs/cloudflare api token/access_key_id";
                 CLOUDFLARE_ACCOUNT_ID = "op://veselabs/cloudflare api token/account_id";
                 CLOUDFLARE_API_TOKEN = "op://veselabs/cloudflare api token/credential";
@@ -42,7 +40,6 @@
                 inherit
                   (pkgs)
                   _1password-cli
-                  awscli2
                   envsubst
                   just
                   pre-commit
