@@ -18,9 +18,7 @@
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_s3_bucket_terraform_state"></a> [s3\_bucket\_terraform\_state](#module\_s3\_bucket\_terraform\_state) | terraform-aws-modules/s3-bucket/aws | ~> 5.7.0 |
+No modules.
 
 ## Resources
 
